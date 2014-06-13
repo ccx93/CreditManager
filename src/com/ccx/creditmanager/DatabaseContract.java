@@ -5,8 +5,7 @@ import android.provider.BaseColumns;
 public class DatabaseContract
 {
 	public DatabaseContract()
-	{
-	};
+	{};
 
 	public static final String	DATABASE_NAME		= "CreditMaster";
 	public static final int		DATABASE_VERSION	= 1;
@@ -17,16 +16,22 @@ public class DatabaseContract
 
 	public static abstract class TransactionMaster implements BaseColumns
 	{
+
+
+
 		public static final String	TABLE_NAME			= "master";
 		public static final String	COLUMN_NAME_NAME	= "name";
+		public static final String	COLUMN_NAME_DUE		= "duedate";
 
-		public static final String	TYPE_NAME			= TEXT_TYPE;
+		public static final String	TYPE_NAME		= TEXT_TYPE;
+		public static final String	TYPE_DUE		= INTEGER_TYPE;
 
 		//formatteroff
 		public static final String	CREATE_TABLE		= 
 				"CREATE TABLE " + TABLE_NAME + " (" + 
-				_ID + "INTEGER PRIMARY KEY," 
-				+ COLUMN_NAME_NAME + TYPE_NAME + ")";
+				_ID 			 + "INTEGER PRIMARY KEY," + 
+				COLUMN_NAME_NAME + TYPE_NAME +  
+				COLUMN_NAME_DUE	 + TYPE_DUE + ")";
 		//formatteron
 
 		public static final String	DELETE_TABLE		= "DROP TABLE IF EXISTS " + TABLE_NAME;
