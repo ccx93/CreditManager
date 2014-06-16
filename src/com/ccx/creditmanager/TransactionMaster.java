@@ -1,29 +1,18 @@
 package com.ccx.creditmanager;
 
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 public class TransactionMaster
 {
-	long 					id;
-	String					name;
-	Date					dueDate;
-	List<TransactionItem>	list;
-	Map<UUID, Integer>		transLoc;
+	long		id;
+	String		name;
+	Date		dueDate;
+	MappedList	list;
 
 	public TransactionMaster(String aName)
 	{
 		this.name = aName;
-		this.list = new LinkedList<TransactionItem>();
-	}
-
-	public void addTransaction(TransactionItem ti)
-	{
-		this.list.add(ti);
-		this.transLoc.put(ti.id, this.list.size() - 1);
+		this.list = new LinkedMappedList();
 	}
 
 	public void clearList()
@@ -31,10 +20,20 @@ public class TransactionMaster
 		this.list.clear();
 	}
 
-	public TransactionItem getTransaction(UUID id)
+	// TRANSACTION MANIPULATION ===============
+	public void addTransaction(TransactionItem ti)
 	{
-		TransactionItem ti = this.list.get(transLoc.get(id));
-		return ti;
+		this.list.add(ti);
+	}
+
+	public void removeTransaction(TransactionItem ti)
+	{
+		this.list.remove(ti);
+	}
+
+	public TransactionItem getTransaction(long id)
+	{
+		return this.list.getItem(id);
 	}
 
 }
