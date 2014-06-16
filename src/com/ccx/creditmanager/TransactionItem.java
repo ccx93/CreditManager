@@ -5,60 +5,37 @@ import java.util.Date;
 public class TransactionItem
 {
 	public static final long	DEFAULT_ID	= -1;
-	long						id;
-	long						value;
-	Date						date;
+	public long					id;
+	public long					value;
+	public Date					date;
 
 	public TransactionItem()
 	{
-		construct(0, new Date());
+		initialize(0, new Date());
 	}
 
 	public TransactionItem(long aValue)
 	{
-		construct(aValue, new Date());
+		initialize(aValue, new Date());
 	}
 
 	public TransactionItem(long aValue, Date aDate)
 	{
-		construct(aValue, aDate);
+		initialize(aValue, aDate);
 	}
 
-	private void construct(long aValue, Date aDate)
+	private void initialize(long aValue, Date aDate)
 	{
 		this.id = DEFAULT_ID;
 		this.value = aValue;
 		this.date = aDate;
 	}
 
-	// GETTERS AND SETTERS =========
-	public long getId()
+	@Override
+	public String toString()
 	{
-		return id;
-	}
+		// TODO
+		return null;
 
-	public void setId(long id)
-	{
-		this.id = id;
-	}
-
-	public long getValue()
-	{
-		return value;
-	}
-
-	public void setValue(long value)
-	{
-		this.value = value;
-	}
-
-	public Date getDate()
-	{
-		return date;
-	}
-
-	public void setDate(Date date)
-	{
-		this.date = date;
 	}
 }

@@ -4,36 +4,27 @@ import java.util.Date;
 
 public class TransactionMaster
 {
-	long		id;
-	String		name;
-	Date		dueDate;
-	MappedList	list;
+	public final long DEFAULT_ID = -1;
+	
+	public long		id;
+	public String	name;
+	public Date		dueDate;
 
 	public TransactionMaster(String aName)
 	{
+		initialize(DEFAULT_ID, aName, new Date());
+	}
+
+	public TransactionMaster(String aName, Date aDueDate)
+	{
+		initialize(DEFAULT_ID, aName, aDueDate);
+	}
+
+	private void initialize(long aId, String aName, Date aDueDate)
+	{
+		this.id = aId;
 		this.name = aName;
-		this.list = new LinkedMappedList();
-	}
-
-	public void clearList()
-	{
-		this.list.clear();
-	}
-
-	// TRANSACTION MANIPULATION ===============
-	public void addTransaction(TransactionItem ti)
-	{
-		this.list.add(ti);
-	}
-
-	public void removeTransaction(TransactionItem ti)
-	{
-		this.list.remove(ti);
-	}
-
-	public TransactionItem getTransaction(long id)
-	{
-		return this.list.getItem(id);
+		this.dueDate = aDueDate;
 	}
 
 }
