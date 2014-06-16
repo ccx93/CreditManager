@@ -37,7 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 																false, TABLE_NAME, null, null,
 																null, null, null, ROW_LIMIT);
 
-		public static final String getMaster(long id)
+		public static final String GET_MASTER(long id)
 		{
 			return SQLiteQueryBuilder.buildQueryString(false, TABLE_NAME, null, "_ID=" + id, null,
 					null, null, ROW_LIMIT);
@@ -66,7 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 																null, null, COLLUMN_NAME_DATE,
 																ROW_LIMIT);
 
-		public static final String getTransactionWithId(long[] id)
+		public static final String GET_TRANSACTION_WITH_ID(long[] id)
 		{
 			int size = id.length;
 			String idInString = "(";
@@ -79,7 +79,14 @@ public class DatabaseHelper extends SQLiteOpenHelper
 					+ idInString, null, null, COLLUMN_NAME_DATE, ROW_LIMIT);
 		}
 
-		public static final String getSpesificTransaction(long id)
+		public static final String GET_TRANSACTION_WITH_MASTER_ID(long id)
+		{
+			return SQLiteQueryBuilder.buildQueryString(false, TABLE_NAME, null, "_ID IN ("
+					+ MasterAndTransaction.GET_TRANSACTION_WITH_MASTER_ID(id) + ")", null, null,
+					COLLUMN_NAME_DATE, ROW_LIMIT);
+		}
+
+		public static final String GET_SPESIFIC_TRANSACTION(long id)
 		{
 			return SQLiteQueryBuilder.buildQueryString(false, TABLE_NAME, null, "_ID=" + id, null,
 					null, null, ROW_LIMIT);
@@ -109,17 +116,18 @@ public class DatabaseHelper extends SQLiteOpenHelper
 																	null, null, null, ROW_LIMIT);
 		public static final String	DELETE_TABLE			= "DROP TABLE IF EXISTS " + TABLE_NAME;
 
-		public static final String getTransactionWithMasterId(long id)
+		public static final String GET_TRANSACTION_WITH_MASTER_ID(long id)
 		{
 			return SQLiteQueryBuilder.buildQueryString(false, TABLE_NAME,
 					new String[] { COLLUMN_NAME_TRANSID }, COLLUMN_NAME_MASTERID + "=" + id, null,
 					null, null, ROW_LIMIT);
 		}
 
-		public static final String deleteTransactionsWithMasterId(long id)
+		public static final String DELETE_TRANSACTION_WITH_MASTER_ID(long id)
 		{
 			return "DELETE FROM " + TABLE_NAME + " WHERE " + COLLUMN_NAME_MASTERID + "=" + id;
 		}
+
 	}
 
 	public DatabaseHelper(Context context)
