@@ -11,22 +11,27 @@ public class TransactionItem
 
 	public TransactionItem()
 	{
-		initialize(0, new Date());
+		initialize(DEFAULT_ID, 0, new Date());
 	}
 
 	public TransactionItem(long aValue)
 	{
-		initialize(aValue, new Date());
+		initialize(DEFAULT_ID, aValue, new Date());
 	}
 
 	public TransactionItem(long aValue, Date aDate)
 	{
-		initialize(aValue, aDate);
+		initialize(DEFAULT_ID, aValue, aDate);
 	}
 
-	private void initialize(long aValue, Date aDate)
+	public TransactionItem(long aId, long aValue, Date aDate)
 	{
-		this.id = DEFAULT_ID;
+		initialize(aId, aValue, aDate);
+	}
+	
+	private void initialize(long aId, long aValue, Date aDate)
+	{
+		this.id = aId;
 		this.value = aValue;
 		this.date = aDate;
 	}
